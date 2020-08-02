@@ -8,11 +8,13 @@
         {% block stylesheets %}{% endblock %}
     </head>
     <body>
-        <nav class="navbar">
-            <a class="navbar-brand" href="#">Gif Search Engine</a>
-        </nav>
+        <div class="container">
+            <nav class="navbar">
+                <a class="navbar-brand" href="{{path('index')}}">Gif Search Engine</a>
+            </nav>
 
-        {% block body %}{% endblock %}
+            {% block body %}{% endblock %}
+        </div>
         {% block javascripts %}{% endblock %}
     </body>
 </html>
