@@ -2,15 +2,29 @@
 
 {% block title %}Results for{% endblock %}
 
-{% macro filesDisplayer(results) %}
+{% macro gifColumnsDisplayer(results) %}
+    {% set columns = 6 %}
     {% for result in results %}
-        {{ dump(result) }}
-        {% set code = '' %}
-        {% set source = 'https://media2.giphy.com/media/' ~ code ~ '/giphy.gif' %}
-        <img src="{{result.source}}">
-        <img src="{{source}}">
-    {% endfor %}
+        {% set source = 'https://media2.giphy.com/media/' ~ result.id ~ '/giphy.gif' %}
+
+        {% if loop.first or loop.index0 is divisible by(columns) %}
+            <div class="row">
+        {% endif %}
+
+        <div class="col-2">
+            <img class="img-fluid" src="{{source}}">
+        </div>
+
+        {% if loop.last and loop.index is not divisible by(columns) %}
+            {% for n in range(low=columns - (loop.index % columns), high=1, step=-1) %}
+                <div class="col-2">&nbsp;</div>
+            {% endfor %}
+        {% endif %}
+            {% if loop.last or loop.index is divisible by(columns) %}
+                </div>
+            {% endif %}
+        {% endfor %}
 {% endmacro %}
 {% block body %}
-    {{_self.filesDisplayer(results)}}
+    {{_self.gifColumnsDisplayer(results)}}
 {% endblock %}
