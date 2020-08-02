@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Results for{% endblock %}
+
+{% macro filesDisplayer(results) %}
+    {% for result in results %}
+        {{ dump(result) }}
+        {% set code = '' %}
+        {% set source = 'https://media2.giphy.com/media/' ~ code ~ '/giphy.gif' %}
+        <img src="{{result.source}}">
+        <img src="{{source}}">
+    {% endfor %}
+{% endmacro %}
+{% block body %}
+    {{_self.filesDisplayer(results)}}
+{% endblock %}
