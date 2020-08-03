@@ -4,6 +4,9 @@ html, body {
     height: 100%;
     font-family: 'Fredoka One', cursive;
 }
+.navbar-brand:hover {
+    text-shadow: -1px 0 gray, 0 1px gray, 1px 0 gray, 0 -1px gray;
+}
 ul {
     display: flex;
     flex-wrap: wrap;
@@ -34,6 +37,14 @@ img {
     /* bring your own prefixes */
     transform: translate(-50%, -50%);
 } 
+.border {
+    border-width:3px !important;
+}
+.preloader {
+    max-width: 9% !important;
+    max-height: 9% !important;
+    min-width: 9% !important;
+}
 footer {
     position: fixed;
     bottom: 0;

@@ -26,15 +26,22 @@
         {% endfor %}
 {% endmacro %}
 {% macro displayGifList(results) %}
-    <ul>
+    <ul class="image-list d-none">
         {% for result in results %}
             {% set source = 'https://media2.giphy.com/media/' ~ result.id ~ '/giphy.gif' %}
             <li>
-                <img class="img-fluid border-rounded rounded" src="{{source}}">
+                <a download="gif_selected.gif" href="{{source}}">
+                    <img class="img-fluid border-rounded rounded" src="{{source}}">
+                </a>
             </li>
         {% endfor %}
     </ul>
-    
+{% endmacro %}
+
+{% macro displayPreloader() %}
+    <div id="preloaderBlock" class="text-center">
+        <img class="preloader" src="{{asset('/images/preloader.gif')}}">
+    </div>
 {% endmacro %}
 {% block body %}
     <nav class="navbar">
@@ -46,4 +53,9 @@
     </nav>
     {# {{_self.gifColumnsDisplayer(results)}} #}
     {{_self.displayGifList(results)}}
+    {{_self.displayPreloader()}}
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{asset('/js/onLoadSearch.js')}}"></script>
 {% endblock %}
