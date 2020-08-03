@@ -10,7 +10,13 @@ html, body {
 #randomImage {
     width: 380px;
     height: 380px;
+    padding: 2.5px;
 }
+@keyframes spin { 
+    100% { 
+      transform: rotateZ(360deg);
+    }
+  }
 #preloaderBlock {
     display: flex;
     align-items: center;

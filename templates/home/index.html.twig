@@ -10,13 +10,14 @@
     <div class="container text-center centered">    
         <h1 class="pb-2">Type what you're looking for...</h1>
         <div class="d-flex justify-content-center">
-            <div class="w-25 h-25">
-
-               {#  <img class="border border-white rounded-circle" src="{{asset('/images/home-image.gif')}}"> #}
-                {% set source = 'https://media2.giphy.com/media/' ~ randomImage.id ~ '/giphy.gif' %}
-                <img id="randomImage" class="border border-white rounded-circle" src="{{source}}">
+            <div class="random-image-wrapper w-25 h-25">
+                <div class="random-image">
+                {#  <img class="border border-white rounded-circle" src="{{asset('/images/home-image.gif')}}"> #}
+                    {% set source = 'https://media2.giphy.com/media/' ~ randomImage.id ~ '/giphy.gif' %}
+                    <img id="randomImage" class="border border-white rounded-circle" src="{{source}}">
+                </div>
             </div>
-            <form method="POST" action="/search" class="p-4 form-inline my-2 my-lg-0">
+            <form method="POST" action="/search" class="p-4 form-inline my-2 my-lg-0" style="z-index: 1000">
                 <input class="form-control mr-sm-2" type="text" name="query">
                 <button class="btn btn-outline-secondary" type="submit">Go</button>
             </form>
