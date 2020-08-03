@@ -60,6 +60,11 @@ img {
     max-height: 9% !important;
     min-width: 9% !important;
 }
+.more-images {
+    max-width: 4%;
+    min-width: 4%;
+    max-height: 4%;
+}
 footer {
     position: fixed;
     bottom: 0;
