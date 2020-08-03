@@ -1,8 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
+
 html, body {
     height: 100%;
+    font-family: 'Fredoka One', cursive;
 }
-
-
 ul {
     display: flex;
     flex-wrap: wrap;
@@ -26,6 +27,18 @@ img {
     vertical-align: bottom;
     border-radius: 1vmin;
 }  
+.centered {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    /* bring your own prefixes */
+    transform: translate(-50%, -50%);
+} 
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
 @media (max-aspect-ratio: 1 / 1) {
     li {
       height: 30vh;
@@ -52,4 +65,3 @@ img {
       min-width: 0;
     }
 }
-  

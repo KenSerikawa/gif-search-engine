@@ -37,6 +37,13 @@
     
 {% endmacro %}
 {% block body %}
+    <nav class="navbar">
+        <a class="navbar-brand text-white" href="{{path('index')}}">.GIF Search Engine</a>
+        <form method="POST" class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" name="query" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit">GO</button>
+        </form>
+    </nav>
     {# {{_self.gifColumnsDisplayer(results)}} #}
     {{_self.displayGifList(results)}}
 {% endblock %}
