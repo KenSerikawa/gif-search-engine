@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Results for{% endblock %}
+{% block title %}Results for {{query}}{% endblock %}
 
 {% macro gifColumnsDisplayer(results) %}
     {% set columns = 6 %}
@@ -12,7 +12,7 @@
         {% endif %}
 
         <div class="col-2 pt-3">
-            <img class="img-fluid" src="{{source}}">
+            <img class="img-fluid border-rounded rounded" src="{{source}}">
         </div>
 
         {% if loop.last and loop.index is not divisible by(columns) %}
@@ -25,6 +25,18 @@
             {% endif %}
         {% endfor %}
 {% endmacro %}
+{% macro displayGifList(results) %}
+    <ul>
+        {% for result in results %}
+            {% set source = 'https://media2.giphy.com/media/' ~ result.id ~ '/giphy.gif' %}
+            <li>
+                <img class="img-fluid border-rounded rounded" src="{{source}}">
+            </li>
+        {% endfor %}
+    </ul>
+    
+{% endmacro %}
 {% block body %}
-    {{_self.gifColumnsDisplayer(results)}}
+    {# {{_self.gifColumnsDisplayer(results)}} #}
+    {{_self.displayGifList(results)}}
 {% endblock %}
