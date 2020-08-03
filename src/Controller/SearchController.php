@@ -16,9 +16,12 @@ class SearchController extends AbstractController
        
         $query = $request->request->get('query');
         $results = $gifSearcher($query)['data'];
+        $pagination = $gifSearcher($query)['pagination'];
+        // dd($gifSearcher($query));
         return $this->render('search/index.html.twig', [
             'query' => $query, 
-            'results' => $results
+            'results' => $results,
+            'pagination' => $pagination
         ]);
     }
 }
