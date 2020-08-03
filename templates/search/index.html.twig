@@ -1,30 +1,6 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Results for {{query}}{% endblock %}
-
-{% macro gifColumnsDisplayer(results) %}
-    {% set columns = 6 %}
-    {% for result in results %}
-        {% set source = 'https://media2.giphy.com/media/' ~ result.id ~ '/giphy.gif' %}
-
-        {% if loop.first or loop.index0 is divisible by(columns) %}
-            <div class="row">
-        {% endif %}
-
-        <div class="col-2 pt-3">
-            <img class="img-fluid border-rounded rounded" src="{{source}}">
-        </div>
-
-        {% if loop.last and loop.index is not divisible by(columns) %}
-            {% for n in range(low=columns - (loop.index % columns), high=1, step=-1) %}
-                <div class="col-2">&nbsp;</div>
-            {% endfor %}
-        {% endif %}
-            {% if loop.last or loop.index is divisible by(columns) %}
-                </div>
-            {% endif %}
-        {% endfor %}
-{% endmacro %}
 {% macro displayGifList(results) %}
     <ul class="image-list d-none">
         {% for result in results %}
@@ -39,8 +15,10 @@
 {% endmacro %}
 
 {% macro displayPreloader() %}
-    <div id="preloaderBlock" class="text-center">
+    <div id="preloaderBlock" class="text-center h-100">
         <img class="preloader" src="{{asset('/images/preloader.gif')}}">
+        <br>
+        <span class="text-muted">Wait a second, please...</span>
     </div>
 {% endmacro %}
 {% block body %}
