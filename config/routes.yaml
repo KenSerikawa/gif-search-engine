@@ -2,5 +2,5 @@ index:
     path: /
     controller: App\Controller\HomeController::index
 results:
-    path: /{query}
+    path: /search
     controller: App\Controller\SearchController::index
