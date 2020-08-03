@@ -21,6 +21,13 @@
         <span class="text-muted">Wait a second, please...</span>
     </div>
 {% endmacro %}
+{% macro displayMoreButton(offset, query) %}
+    <div class="text-center w-100 mt-3 mb-5" >
+        <a id="showMore" type="button" title="show more" onclick="displayMore({{offset}}, '{{query}}')">
+            <img class="more-images" src="{{asset('/images/more.png')}}">
+        </a>
+    </div>
+{% endmacro %}
 {% block body %}
     <nav class="navbar">
         <a class="navbar-brand text-white" href="{{path('index')}}">.GIF Search Engine</a>
@@ -29,11 +36,48 @@
             <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit">GO</button>
         </form>
     </nav>
-    {# {{_self.gifColumnsDisplayer(results)}} #}
     {{_self.displayGifList(results)}}
     {{_self.displayPreloader()}}
+    <ul id="more"></ul>
+    {{_self.displayMoreButton(pagination.count, query)}}
+
 {% endblock %}
 
 {% block javascripts %}
     <script src="{{asset('/js/onLoadSearch.js')}}"></script>
+    <script src="{{asset('bundles/fosjsrouting/js/router.min.js')}}"></script>
+    <script>
+    function displayMore(offset, query) {
+        var elementToAppend = document.getElementById('more')
+        var list = document.createElement('ul')
+        $.ajax({
+            type: "POST",
+            url: "{{path('more_results')}}",
+            data: {
+                offset: offset,
+                query: query
+            }, 
+            success: function (response) {
+                let data = response.data
+                let showMoreButton = document.getElementById('showMore')
+                for(let i = 0; i < response.data.length; i++) {
+                    let item = response.data[i]
+                    let itemOnList = document.createElement('li')
+                    let link = document.createElement('a')
+                    let img = document.createElement('img')
+                    img.classList.add('img-fluid')
+                    img.classList.add('border-rounded')
+                    img.classList.add('rounded')
+                    img.src = 'https://media2.giphy.com/media/' + item.id + '/giphy.gif'
+                    link.appendChild(img)
+                    itemOnList.appendChild(link)
+                    elementToAppend.appendChild(itemOnList)
+                }
+                let offset = response.pagination.offset + response.pagination.count
+                showMoreButton.setAttribute('onclick', "displayMore(" + offset + ", '"+ query +"')")
+                console.log(response.pagination)
+            }
+        });
+    }
+    </script>
 {% endblock %}
