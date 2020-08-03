@@ -4,3 +4,9 @@ index:
 results:
     path: /search
     controller: App\Controller\SearchController::index
+more_results: 
+    path: /more_results
+    controller: App\Controller\DiggerController::getMore
+    methods: [POST]
+    options:
+        expose: true
