@@ -7,6 +7,10 @@ html, body {
 .navbar-brand:hover {
     text-shadow: -1px 0 gray, 0 1px gray, 1px 0 gray, 0 -1px gray;
 }
+#randomImage {
+    width: 380px;
+    height: 380px;
+}
 #preloaderBlock {
     display: flex;
     align-items: center;
