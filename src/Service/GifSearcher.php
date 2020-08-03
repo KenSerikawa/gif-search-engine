@@ -18,7 +18,8 @@ final class GifSearcher
     public function __invoke($query)
     {
         $apiKey = $this->parameters->get('giphy.api.key');
-        $url = "http://api.giphy.com/v1/gifs/search?q=" . $query . "&api_key=" . $apiKey . "&limit=50";
+        $query = str_replace(' ', '+', $query);
+        $url = "http://api.giphy.com/v1/gifs/search?q=" . $query . "&api_key=" . $apiKey . "&limit=100";
         return json_decode(file_get_contents($url), true);
     }
 }
