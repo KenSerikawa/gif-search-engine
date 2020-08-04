@@ -62,13 +62,15 @@
                 let showMoreButton = document.getElementById('showMore')
                 for(let i = 0; i < response.data.length; i++) {
                     let item = response.data[i]
+                    let source = 'https://media2.giphy.com/media/' + item.id + '/giphy.gif'
                     let itemOnList = document.createElement('li')
                     let link = document.createElement('a')
+                    link.href = source
                     let img = document.createElement('img')
                     img.classList.add('img-fluid')
                     img.classList.add('border-rounded')
                     img.classList.add('rounded')
-                    img.src = 'https://media2.giphy.com/media/' + item.id + '/giphy.gif'
+                    img.src = source
                     link.appendChild(img)
                     itemOnList.appendChild(link)
                     elementToAppend.appendChild(itemOnList)
