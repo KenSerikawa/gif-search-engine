@@ -1,12 +1,14 @@
 index:
     path: /
-    controller: App\Controller\HomeController::index
+    controller: App\Controller\GetHomeController
+    methods: [GET]
 results:
     path: /search
-    controller: App\Controller\SearchController::index
+    controller: App\Controller\GetSearchController
+    methods: [GET, POST]
 more_results: 
     path: /more_results
-    controller: App\Controller\DiggerController::getMore
+    controller: App\Controller\GetMoreResultsController
     methods: [POST]
     options:
         expose: true
