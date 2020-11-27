@@ -6,12 +6,16 @@ use App\Service\GifRandomSelector;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
-class HomeController extends AbstractController
+class GetHomeController extends AbstractController
 {
-    public function index(GifRandomSelector $randomSelector)
+    public function __construct(GifRandomSelector $randomSelector)
     {
-        $randomImage = $randomSelector->__invoke();
-        /* dd($randomImage['data']); */
+        $this->randomSelector = $randomSelector;
+    }
+    public function __invoke()
+    {
+        $randomImage = $this->randomSelector->__invoke();
+
         return $this->render('home/index.html.twig', [
             'randomImage' => $randomImage['data']
         ]);
